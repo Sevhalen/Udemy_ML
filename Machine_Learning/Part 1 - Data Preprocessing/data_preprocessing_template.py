@@ -7,11 +7,13 @@ import pandas as pd
 
 # Importing the dataset
 dataset = pd.read_csv('Data.csv')
+# Dans l'instruction ci-dessous, les crochets indiquent "Prend toutes les lignes, Prend toutes les colonnes moins la dernière"
 X = dataset.iloc[:, :-1].values
+# Attention, les index de lignes et colonnes commencent à 0 et non à 1
 y = dataset.iloc[:, 3].values
 
 # Splitting the dataset into the Training set and Test set
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
 # Feature Scaling
