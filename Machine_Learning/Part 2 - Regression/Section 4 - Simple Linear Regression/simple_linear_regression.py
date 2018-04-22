@@ -23,12 +23,15 @@ sc_y = StandardScaler()
 y_train = sc_y.fit_transform(y_train)"""
 
 # Fitting Simple Linear Regression to the Training set
+# On peut choisir d'importer uniquemet une classe (comme ici la LinearRegression de linear_model)
+# ou l'ensemble de la librairie linear_model et affecter ensuite la classe
+# regressor = linear_model.LinearRegression
 from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
 regressor.fit(X_train, y_train)
 
 # Predicting the Test set results
-y_pred = regressor.predict(X_test)
+y_pred = regressor.predict(X_test) 
 
 # Visualising the Training set results
 plt.scatter(X_train, y_train, color = 'red')
