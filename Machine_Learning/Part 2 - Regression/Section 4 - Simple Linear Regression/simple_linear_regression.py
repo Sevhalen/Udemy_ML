@@ -34,8 +34,8 @@ regressor.fit(X_train, y_train)
 y_pred = regressor.predict(X_test) 
 
 # Visualising the Training set results
-plt.scatter(X_train, y_train, color = 'red')
-plt.plot(X_train, regressor.predict(X_train), color = 'blue')
+plt.scatter(X_train, y_train, color = 'red') # Trace un nuage de points
+plt.plot(X_train, regressor.predict(X_train), color = 'blue') # Trace une droite
 plt.title('Salary vs Experience (Training set)')
 plt.xlabel('Years of Experience')
 plt.ylabel('Salary')
@@ -43,7 +43,7 @@ plt.show()
 
 # Visualising the Test set results
 plt.scatter(X_test, y_test, color = 'red')
-plt.plot(X_train, regressor.predict(X_train), color = 'blue')
+plt.plot(X_train, regressor.predict(X_train), color = 'blue') # Reprend la correlation estimée avec le tableau d'entrainement
 plt.title('Salary vs Experience (Test set)')
 plt.xlabel('Years of Experience')
 plt.ylabel('Salary')
