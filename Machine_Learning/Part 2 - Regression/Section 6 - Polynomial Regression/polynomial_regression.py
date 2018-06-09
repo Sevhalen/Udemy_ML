@@ -7,11 +7,15 @@ import pandas as pd
 
 # Importing the dataset
 dataset = pd.read_csv('Position_Salaries.csv')
+# La ligne suivante récupère la seconde colonne du Dataset sous forme de matrice
+# s'il était indiqué uniquement '1' en secondd argument, X aurait la dimension d'un vecteur
+# ce qui ne serait pas OK pour la régression.
+# L'écriture '1:2' est OK car Python exclue la dernière colonne indiquée
 X = dataset.iloc[:, 1:2].values
 y = dataset.iloc[:, 2].values
 
 # Splitting the dataset into the Training set and Test set
-"""from sklearn.cross_validation import train_test_split
+"""from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)"""
 
 # Feature Scaling
@@ -27,6 +31,9 @@ lin_reg.fit(X, y)
 
 # Fitting Polynomial Regression to the dataset
 from sklearn.preprocessing import PolynomialFeatures
+# Création d'une matrice avec pour colonne les puissances de X jusqu'à 4
+# la première colonne est emplie de 1 pour l'intégration de la constante
+# dans l'équation de régression
 poly_reg = PolynomialFeatures(degree = 4)
 X_poly = poly_reg.fit_transform(X)
 poly_reg.fit(X_poly, y)
@@ -51,6 +58,7 @@ plt.show()
 
 # Visualising the Polynomial Regression results (for higher resolution and smoother curve)
 X_grid = np.arange(min(X), max(X), 0.1)
+# La commande ci-dessous transforme le vecteur X_grid en une matrice
 X_grid = X_grid.reshape((len(X_grid), 1))
 plt.scatter(X, y, color = 'red')
 plt.plot(X_grid, lin_reg_2.predict(poly_reg.fit_transform(X_grid)), color = 'blue')
